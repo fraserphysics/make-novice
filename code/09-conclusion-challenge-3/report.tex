@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts,afterpage}
+%\usepackage{showlabels}
+\usepackage[pdftex]{graphicx,color}
+\title{An Examination of Zipf's Law}
+
+\author{A Learner}
+\begin{document}
+\maketitle
+
+Zipf's Law concerns the frequency with which different words occur in
+a language.  Here we test the law by sorting words in texts based on
+the number of times that they occur.  We get arrays \emph{w} and
+\emph{c} with $w[1]$ being the word that occurs most often and $c[1]$
+being the number of times that word occurs, $w[2]$ being the second
+most frequent word and $c[2]$ being the number of times that word
+occurs, etc.  Zipf claimed that
+\begin{equation*}
+  \frac{c[n]}{c[m]} \approx \frac{m}{n}.
+\end{equation*}
+
+We use the following books in the study:
+\begin{description}
+\item[abyss] The People of the Abyss by Jack London
+\item[isles] A Journey to the Western Islands of Scotland by Samuel
+  Johnson
+\item[last] Scott's Last Expedition Volume I by Robert Falcon Scott
+\item[sierra] My First Summer in the Sierra by John Muir
+\end{description}
+
+Counts of the two most frequent words in each book appear in Table
+\ref{tab:results}
+\begin{table}
+  \centering
+  \begin{tabular}{c|rrr}
+    \input{results.txt}
+  \end{tabular}
+  \caption{Counts of the two most frequent words in each book.  Zipf's
+    law predicts that the ratio will be about 2.0}
+  \label{tab:results}
+\end{table}
+
+\newcommand{\countfig}[1]{
+\begin{figure}
+  \centering
+    \resizebox{0.7\columnwidth}{!}{\includegraphics{#1.png}}
+    \caption{Counts of the 10 most frequent word in the book \emph{#1}.}
+    \label{fig:#1}
+\end{figure}
+}
+
+\countfig{abyss}
+\countfig{isles}
+\countfig{last}
+\countfig{sierra}
+
+\end{document}
+
+%%%---------------
+%%% Local Variables:
+%%% eval: (TeX-PDF-mode)
+%%% eval: (setq ispell-personal-dictionary "./localdict")
+%%% End:

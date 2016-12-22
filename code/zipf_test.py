@@ -14,10 +14,17 @@ def top_two_word(counts):
 
 if __name__ == '__main__':
     input_files = sys.argv[1:]
-    print("Book\tFirst\tSecond\tRatio")
+    print('''Book & First & Second & Ratio\\\\
+    \\hline''')
     for input_file in input_files:
         counts = load_word_counts(input_file)
         [first, second] = top_two_word(counts)
         bookname = input_file[:-4]
-        print("%s\t%i\t%i\t%.2f" %(bookname, first, second, float(first)/second))
+        print("%s & %i & %i & %.2f \\\\" %(bookname, first, second, float(first)/second))
 
+'''To Do: Argument parser in main that prints old way unless --latex.
+Here are the old print statments:
+
+    print("Book\tFirst\tSecond\tRatio")
+        print("%s\t%i\t%i\t%.2f" %(bookname, first, second, float(first)/second))
+'''
