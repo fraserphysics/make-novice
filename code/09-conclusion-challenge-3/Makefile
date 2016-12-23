@@ -2,26 +2,25 @@ include config.mk
 
 TXT_FILES=$(wildcard $(BOOKS)/*.txt)
 DAT_FILES=$(patsubst $(BOOKS)/%.txt, %.dat, $(TXT_FILES))
-PNG_FILES=$(patsubst $(BOOKS)/%.txt, %.png, $(TXT_FILES))
+PDF_FILES=$(patsubst $(BOOKS)/%.txt, %.pdf, $(TXT_FILES))
 ZIPF_DIR=zipf_analysis
 ZIPF_ARCHIVE=$(ZIPF_DIR).tar.gz
 
-## all         : Generate archive of code, data, plots and Zipf summary table.
-.PHONY : all
-all : $(ZIPF_ARCHIVE)
+report.pdf: report.bbl $(PDF_FILES) results.tex file_list.tex
+	pdflatex report
+	pdflatex report
+report.aux: report.tex local.bib
+	pdflatex report
+report.bbl: report.aux
+	bibtex report
 
-$(ZIPF_ARCHIVE) : $(ZIPF_DIR)
-	tar -czf $@ $<
-
-$(ZIPF_DIR): Makefile results.txt \
-             $(DAT_FILES) $(PNG_FILES) $(RESULTS_TXT) \
-             $(COUNT_SRC) $(PLOT_SRC) $(ZIPF_SRC)
-	mkdir -p $@
-	cp $^ $@
-
-## results.txt : Generate Zipf summary table.
-results.txt : $(DAT_FILES) $(ZIPF_SRC)
-	$(ZIPF_EXE) *.dat > $@
+## results.tex : Generate Zipf summary table.
+results.tex : $(DAT_FILES) $(ZIPF_SRC)
+	$(ZIPF_EXE) --latex *.dat > $@
+file_list.tex:
+	echo "\\\begin{verbatim}\n$$ git ls-files" > $@
+	git ls-files >> $@
+	echo "\end{verbatim}" >> $@
 
 ## dats        : Count words in text files.
 .PHONY : dats
@@ -31,17 +30,17 @@ dats : $(DAT_FILES)
 	$(COUNT_EXE) $< $*.dat
 
 ## pngs        : Plot word counts.
-.PHONY : pngs
-pngs : $(PNG_FILES)
+.PHONY : pdfs
+pdfs : $(PDF_FILES)
 
-%.png : %.dat $(PLOT_SRC)
-	$(PLOT_EXE) $*.dat $*.png
+%.pdf : %.dat $(PLOT_SRC)
+	$(PLOT_EXE) $*.dat $*.pdf
 
 ## clean       : Remove auto-generated files.
 .PHONY : clean
 clean :
 	rm -f $(DAT_FILES)
-	rm -f $(PNG_FILES)
+	rm -f $(PDF_FILES)
 	rm -f results.txt
 	rm -rf $(ZIPF_DIR)
 	rm -f $(ZIPF_ARCHIVE)
@@ -51,7 +50,7 @@ clean :
 variables:
 	@echo TXT_FILES: $(TXT_FILES)
 	@echo DAT_FILES: $(DAT_FILES)
-	@echo PNG_FILES: $(PNG_FILES)
+	@echo PDF_FILES: $(PDF_FILES)
 	@echo ZIPF_DIR: $(ZIPF_DIR)
 	@echo ZIPF_ARCHIVE: $(ZIPF_ARCHIVE)
 

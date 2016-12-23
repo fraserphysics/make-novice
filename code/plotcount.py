@@ -86,12 +86,19 @@ def plot_ascii_bars(values, labels=None, screenwidth=80, gap=2, truncate=True):
     return [s + b for s, b in zip(labels, bars)]
 
 
-if __name__ == '__main__':
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+def main(argv=None):
+    '''For looking at map action and moments of images.
+
+    '''
+    import argparse
+    if argv is None:                    # Usual case
+        argv = sys.argv[1:]
+
+    input_file = argv[0]
+    output_file = argv[1]
     limit = 10
-    if len(sys.argv) > 3:
-        limit = int(sys.argv[3])
+    if len(argv) > 2:
+        limit = int(argv[2])
     counts = load_word_counts(input_file)
     plot_word_counts(counts, limit)
     if output_file == "show":
@@ -103,3 +110,8 @@ if __name__ == '__main__':
             print(line)
     else:
         plt.savefig(output_file)
+
+if __name__ == "__main__":
+    rv = main()
+    sys.exit(rv)
+    

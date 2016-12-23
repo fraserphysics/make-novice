@@ -1,31 +1,61 @@
-\documentclass[11pt]{article}
+\documentclass[]{article}
 \usepackage{amsmath,amsfonts,afterpage}
+\usepackage{url}
 %\usepackage{showlabels}
-\usepackage[pdftex]{graphicx,color}
-\title{An Examination of Zipf's Law}
+\usepackage[pdftex]{graphicx,color} \title{An Examination of Zipf's
+  Law:\\ or\\ Using Gnu Make to Build a Document}
 
 \author{A Learner}
 \begin{document}
 \maketitle
 
-Zipf's Law concerns the frequency with which different words occur in
-a language.  Here we test the law by sorting words in texts based on
-the number of times that they occur.  We get arrays \emph{w} and
-\emph{c} with $w[1]$ being the word that occurs most often and $c[1]$
-being the number of times that word occurs, $w[2]$ being the second
-most frequent word and $c[2]$ being the number of times that word
-occurs, etc.  Zipf claimed that
+\section{Using Make}
+\label{sec:make}
+
+The point of this document is that one can build a PDF version of it
+by issuing
+\begin{verbatim}
+$ make
+\end{verbatim}
+from a command line in the directory
+\emph{make-novice/code/09-conclusion-challenge-3} which contains the
+source files reported by \emph{git ls-files} \input{file_list.tex} The
+files are derived from and rely on the \emph{Software
+  Carpentry}\cite{software-carpentry} lesson \emph{make-novice} which
+you can obtain from \emph{git-hub}.  The following sequence of
+commands will fetch and build the document:
+\begin{verbatim}
+$ git clone
+$ cd
+$ make
+\end{verbatim}
+
+The remainder of the document is an imitation research manuscript on a
+study of the frequency of occurrence of words in English.
+
+\section{Zipf's Law}
+\label{sec:zipf}
+
+Zipf's Law\cite{zipf:49a} concerns the frequency with which different
+words occur in a language.  Here we test the law by sorting words in
+texts based on the number of times that they occur.  We get arrays
+\emph{w} and \emph{c} with $w_1$ being the word that occurs most
+often and $c_1$ being the number of times that word occurs, $w_2$
+being the second most frequent word and $c_2$ being the number of
+times that word occurs, etc.  Zipf claimed that
 \begin{equation*}
   \frac{c[n]}{c[m]} \approx \frac{m}{n}.
 \end{equation*}
 
 We use the following books in the study:
 \begin{description}
-\item[abyss] The People of the Abyss by Jack London
+\item[abyss] The People of the Abyss by Jack
+  London\cite{London}
 \item[isles] A Journey to the Western Islands of Scotland by Samuel
-  Johnson
-\item[last] Scott's Last Expedition Volume I by Robert Falcon Scott
-\item[sierra] My First Summer in the Sierra by John Muir
+  Johnson\cite{Johnson}
+\item[last] Scott's Last Expedition Volume I by Robert Falcon
+  Scott\cite{Scott}
+\item[sierra] My First Summer in the Sierra by John Muir\cite{Muir}
 \end{description}
 
 Counts of the two most frequent words in each book appear in Table
@@ -43,7 +73,7 @@ Counts of the two most frequent words in each book appear in Table
 \newcommand{\countfig}[1]{
 \begin{figure}
   \centering
-    \resizebox{0.7\columnwidth}{!}{\includegraphics{#1.png}}
+    \resizebox{0.7\columnwidth}{!}{\includegraphics{#1.pdf}}
     \caption{Counts of the 10 most frequent word in the book \emph{#1}.}
     \label{fig:#1}
 \end{figure}
@@ -54,6 +84,8 @@ Counts of the two most frequent words in each book appear in Table
 \countfig{last}
 \countfig{sierra}
 
+\bibliographystyle{siam}
+\bibliography{local}
 \end{document}
 
 %%%---------------

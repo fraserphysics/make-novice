@@ -11,20 +11,32 @@ def top_two_word(counts):
     count_data = [count for (_, count, _) in limited_counts]
     return count_data
 
+def main(argv=None):
+    import argparse
+    
+    if argv is None:                    # Usual case
+        argv = sys.argv[1:]
+        
+    parser = argparse.ArgumentParser(
+        description='Print a table of the 2 most frequent words in each book')
+    parser.add_argument('data_files', nargs='*', help='list of data files')
+    parser.add_argument('--latex', action='store_true',
+                        help='Use LaTeX formt for table')
+    args = parser.parse_args(argv)
 
-if __name__ == '__main__':
-    input_files = sys.argv[1:]
-    print('''Book & First & Second & Ratio\\\\
-    \\hline''')
-    for input_file in input_files:
+    if args.latex:
+        header = 'Book & First & Second & Ratio\\\\ \\hline'
+        line_format = '%s & %i & %i & %.2f \\\\'
+    else:
+        header = "Book\tFirst\tSecond\tRatio"
+        line_format = "%s\t%i\t%i\t%.2f"
+    
+    print(header)
+    for input_file in args.data_files:
         counts = load_word_counts(input_file)
         [first, second] = top_two_word(counts)
         bookname = input_file[:-4]
-        print("%s & %i & %i & %.2f \\\\" %(bookname, first, second, float(first)/second))
-
-'''To Do: Argument parser in main that prints old way unless --latex.
-Here are the old print statments:
-
-    print("Book\tFirst\tSecond\tRatio")
-        print("%s\t%i\t%i\t%.2f" %(bookname, first, second, float(first)/second))
-'''
+        print(line_format%(bookname, first, second, float(first)/second))
+    
+if __name__ == '__main__':
+    sys.exit(main())
