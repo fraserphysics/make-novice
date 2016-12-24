@@ -1,12 +1,15 @@
 \documentclass[]{article}
-\usepackage{amsmath,amsfonts,afterpage}
-\usepackage{url}
-%\usepackage{showlabels}
-\usepackage[pdftex]{graphicx,color} \title{An Examination of Zipf's
-  Law:\\ or\\ Using Gnu Make to Build a Document}
+\usepackage{amsmath} % For equation*
+\usepackage{url}     % For the web sites in the bibliography
+\usepackage{verbatim}% For listing head of abyss
+\usepackage[pdftex]{graphicx,color} % For including pdfs
 
+\title{An Examination of Zipf's Law:\\ or\\ Using Gnu Make to Build a
+  Document}
 \author{A Learner}
+
 \begin{document}
+
 \maketitle
 
 \section{Using Make}
@@ -19,8 +22,11 @@ $ make
 \end{verbatim}
 from a command line in the directory
 \emph{make-novice/code/09-conclusion-challenge-3} which contains the
-source files reported by \emph{git ls-files} \input{file_list.tex} The
-files are derived from and rely on the \emph{Software
+source files reported by \emph{git ls-files}
+%
+\input{file_list.tex}
+%
+The files are derived from and rely on the \emph{Software
   Carpentry}\cite{software-carpentry} lesson \emph{make-novice} which
 you can obtain from \emph{git-hub}.  The following sequence of
 commands will fetch and build the document:
@@ -36,13 +42,13 @@ study of the frequency of occurrence of words in English.
 \section{Zipf's Law}
 \label{sec:zipf}
 
-Zipf's Law\cite{zipf:49a} concerns the frequency with which different
+Zipf's Law\cite{Zipf} concerns the frequency with which different
 words occur in a language.  Here we test the law by sorting words in
-texts based on the number of times that they occur.  We get arrays
-\emph{w} and \emph{c} with $w_1$ being the word that occurs most
-often and $c_1$ being the number of times that word occurs, $w_2$
-being the second most frequent word and $c_2$ being the number of
-times that word occurs, etc.  Zipf claimed that
+texts based on the number of times that they occur.  Code from the
+Software Carpentry lesson makes tables in which the first column,
+\emph{w}, is a word and the second column, \emph{c}, is a count of the
+number of times the word occurs.  The table is sorted so that \emph{c}
+is monotonically decreasing.  Zipf observed that
 \begin{equation*}
   \frac{c[n]}{c[m]} \approx \frac{m}{n}.
 \end{equation*}
@@ -58,8 +64,17 @@ We use the following books in the study:
 \item[sierra] My First Summer in the Sierra by John Muir\cite{Muir}
 \end{description}
 
-Counts of the two most frequent words in each book appear in Table
-\ref{tab:results}
+Here are the first ten values of \emph{w} and \emph{c} for the book
+\emph{abyss}
+%
+\verbatiminput{abyss.head}
+%
+A plot of that data appears in Figure~\ref{fig:abyss}.
+
+Counts of the two most frequent words in each book appear in
+Table~\ref{tab:results}, and plots of the 10 most frequent words for
+the books isles, last and sierra appear in
+Figures~\ref{fig:isles}-\ref{fig:sierra}.
 \begin{table}
   \centering
   \begin{tabular}{c|rrr}
@@ -74,7 +89,7 @@ Counts of the two most frequent words in each book appear in Table
 \begin{figure}
   \centering
     \resizebox{0.7\columnwidth}{!}{\includegraphics{#1.pdf}}
-    \caption{Counts of the 10 most frequent word in the book \emph{#1}.}
+    \caption{Counts of the 10 most frequent words in the book \emph{#1}.}
     \label{fig:#1}
 \end{figure}
 }
