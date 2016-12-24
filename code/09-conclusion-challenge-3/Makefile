@@ -6,10 +6,11 @@ PDF_FILES=$(patsubst $(BOOKS)/%.txt, %.pdf, $(TXT_FILES))
 ZIPF_DIR=zipf_analysis
 ZIPF_ARCHIVE=$(ZIPF_DIR).tar.gz
 
-report.pdf: report.bbl $(PDF_FILES) results.tex file_list.tex
+REPORT_DEP = report.tex $(PDF_FILES) results.tex file_list.tex
+report.pdf: $(REPORT_DEP) report.bbl 
 	pdflatex report
 	pdflatex report
-report.aux: report.tex local.bib
+report.aux: $(REPORT_DEP) local.bib
 	pdflatex report
 report.bbl: report.aux
 	bibtex report
@@ -40,10 +41,11 @@ pdfs : $(PDF_FILES)
 .PHONY : clean
 clean :
 	rm -f $(DAT_FILES)
-	rm -f $(PDF_FILES)
+	rm -f *.pdf
 	rm -f results.txt
 	rm -rf $(ZIPF_DIR)
 	rm -f $(ZIPF_ARCHIVE)
+	rm -f report.aux report.blg report.bbl report.log file_list.tex results.tex
 
 ## variables   : Print variables.
 .PHONY : variables

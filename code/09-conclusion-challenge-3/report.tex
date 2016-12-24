@@ -25,8 +25,8 @@ files are derived from and rely on the \emph{Software
 you can obtain from \emph{git-hub}.  The following sequence of
 commands will fetch and build the document:
 \begin{verbatim}
-$ git clone
-$ cd
+$ git clone -b latex git@github.com:fraserphysics/make-novice.git
+$ cd make-novice/code/09-conclusion-challenge-3
 $ make
 \end{verbatim}
 
@@ -63,7 +63,7 @@ Counts of the two most frequent words in each book appear in Table
 \begin{table}
   \centering
   \begin{tabular}{c|rrr}
-    \input{results.txt}
+    \input{results.tex}
   \end{tabular}
   \caption{Counts of the two most frequent words in each book.  Zipf's
     law predicts that the ratio will be about 2.0}
@@ -84,7 +84,7 @@ Counts of the two most frequent words in each book appear in Table
 \countfig{last}
 \countfig{sierra}
 
-\bibliographystyle{siam}
+\bibliographystyle{unsrturl}
 \bibliography{local}
 \end{document}
 
