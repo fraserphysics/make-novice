@@ -10,9 +10,8 @@ _site
 *.aux
 *.log
 *.pdf
-/code/09-conclusion-challenge-3/results.txt
-/code/09-conclusion-challenge-3/zipf_analysis*
-/code/09-conclusion-challenge-3/file_list.tex
-/code/09-conclusion-challenge-3/report.bbl
-/code/09-conclusion-challenge-3/report.blg
-/code/09-conclusion-challenge-3/results.tex
+*.bbl
+*.blg
+/code/10-latex-example/*.head
+/code/10-latex-example/file_list.tex
+/code/10-latex-example/results.tex
