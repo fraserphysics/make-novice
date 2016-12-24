@@ -112,6 +112,5 @@ def main(argv=None):
         plt.savefig(output_file)
 
 if __name__ == "__main__":
-    rv = main()
-    sys.exit(rv)
+    sys.exit(main())
     
