@@ -1,5 +1,4 @@
-include config.mk
-
+BOOKS=../../data/books
 TXT_FILES=$(wildcard $(BOOKS)/*.txt)
 DAT_FILES=$(patsubst $(BOOKS)/%.txt, %.dat, $(TXT_FILES))
 PDF_FILES=$(patsubst $(BOOKS)/%.txt, %.pdf, $(TXT_FILES))
@@ -10,14 +9,16 @@ report.pdf: report.bbl
 	pdflatex report
 report.aux: report.tex $(PDF_FILES) results.tex file_list.tex abyss.head
 	pdflatex report
+
 ## report.bbl    : Build bibliography for report
 report.bbl: local.bib report.aux
 	bibtex report
 
-## results.tex   : Generate Zipf summary table.
-results.tex : $(DAT_FILES) $(ZIPF_SRC)
-	$(ZIPF_EXE) --latex *.dat > $@
-## file_list.tex : Generate list of files under version control, the source files
+## results.tex   : Make Zipf summary table.
+results.tex : $(DAT_FILES) ../zipf_test.py
+	python ../zipf_test.py --latex *.dat > $@
+
+## file_list.tex : Make list of files under version control, ie, source files
 file_list.tex:
 	echo "\\\begin{verbatim}\n$$ git ls-files" > $@
 	git ls-files >> $@
@@ -27,18 +28,15 @@ file_list.tex:
 .PHONY : dats
 dats : $(DAT_FILES)
 
-%.dat : $(BOOKS)/%.txt $(COUNT_SRC)
-	$(COUNT_EXE) $< $*.dat
+%.dat : $(BOOKS)/%.txt ../wordcount.py
+	python ../wordcount.py $< $*.dat
 
+## %head         : Print the first two fields of the first ten lines of %dat
 %.head : %.dat
 	head $< |awk '{print $$1, $$2}' > $@
 
-## pngs          : Plot word counts.
-.PHONY : pdfs
-pdfs : $(PDF_FILES)
-
-%.pdf : %.dat $(PLOT_SRC)
-	$(PLOT_EXE) $*.dat $*.pdf
+%.pdf : %.dat ../plotcount.py
+	python ../plotcount.py $*.dat $*.pdf
 
 ## clean         : Remove auto-generated files.
 .PHONY : clean

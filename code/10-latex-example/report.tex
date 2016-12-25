@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 \usepackage{amsmath} % For equation*
 \usepackage{url}     % For the web sites in the bibliography
 \usepackage{verbatim}% For listing head of abyss
@@ -16,28 +16,38 @@
 \label{sec:make}
 
 The point of this document is that one can build a PDF version of it
-by issuing
-\begin{verbatim}
-$ make
-\end{verbatim}
-from a command line in the directory
-\emph{make-novice/code/10-latex-example} which contains the
+by issuing \emph{make} from a command line in the directory
+\emph{make-novice/code/10-latex-example} which contains these
 source files reported by \emph{git ls-files}
 %
 \input{file_list.tex}
 %
 The files are derived from and rely on the \emph{Software
-  Carpentry}\cite{software-carpentry} lesson \emph{make-novice} which
-you can obtain from \emph{git-hub}.  The following sequence of
-commands will fetch and build the document:
+  Carpentry}\cite{software-carpentry} lesson \emph{make-novice}.
+Section~\ref{sec:zipf} is an imitation research manuscript that
+reports on a study of word frequency using the files.  The following
+sequence of commands will fetch and build the document:
 \begin{verbatim}
 $ git clone -b latex https://github.com/fraserphysics/make-novice.git
 $ cd make-novice/code/10-latex-example
 $ make
 \end{verbatim}
 
-The remainder of the document is an imitation research manuscript on a
-study of the frequency of occurrence of words in English.
+\subsection{The Makefile}
+\label{sec:makefile}
+
+The last three lines of the Makefile, namely
+\begin{verbatim}
+.PHONY : help
+help : Makefile
+        @sed -n 's/^##//p' $<
+\end{verbatim}
+enable one to get a list of selected targets and explanations by
+typing ``make help'' on a command line.  The \emph{help} target rule
+uses the stream editor utility \emph{sed} to extract lines from the
+Makefile that start with ``\#\#''.  Similarly the \emph{\%.head} rule
+uses the utility \emph{awk} to print the first two fields of each
+line.
 
 \section{Zipf's Law}
 \label{sec:zipf}
@@ -73,9 +83,9 @@ A plot of that data appears in Figure~\ref{fig:abyss}.
 
 Counts of the two most frequent words in each book appear in
 Table~\ref{tab:results}, and plots of the ten most frequent words for
-the books isles, last and sierra appear in
+the books \emph{isles, last} and \emph{sierra} appear in
 Figures~\ref{fig:isles}-\ref{fig:sierra}.
-\begin{table}
+\begin{table}[b]
   \centering
   \begin{tabular}{c|rrr}
     \input{results.tex}
@@ -84,11 +94,10 @@ Figures~\ref{fig:isles}-\ref{fig:sierra}.
     law predicts that the ratio will be about 2.0}
   \label{tab:results}
 \end{table}
-
 \newcommand{\countfig}[1]{
-\begin{figure}
+\begin{figure}[t]
   \centering
-    \resizebox{0.7\columnwidth}{!}{\includegraphics{#1.pdf}}
+    \resizebox{0.9\columnwidth}{!}{\includegraphics{#1.pdf}}
     \caption{Counts of the ten most frequent words in the book \emph{#1}.}
     \label{fig:#1}
 \end{figure}
