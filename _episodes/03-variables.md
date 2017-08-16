@@ -13,7 +13,7 @@ keypoints:
 - "Use `$<` to refer to the first dependency of the current rule."
 ---
 
-After the exercise at the end of the previous part, our Makefile look like this:
+After the exercise at the end of the previous episode, our Makefile looked like this:
 
 ~~~
 # Generate summary table.
@@ -51,7 +51,7 @@ Makefile but forget to rename it elsewhere.
 > In many programming languages, the bulk of the language features are
 > there to allow the programmer to describe long-winded computational
 > routines as short, expressive, beautiful code.  Features in Python
-> or R or Java like user-defined variables and functions are useful in
+> or R or Java, such as user-defined variables and functions are useful in
 > part because they mean we don't have to write out (or think about)
 > all of the details over and over again.  This good habit of writing
 > things out only once is known as the "Don't Repeat Yourself"
@@ -112,49 +112,6 @@ python zipf_test.py isles.dat abyss.dat last.dat > results.txt
 ~~~
 {: .output}
 
-We can use the bash wildcard in our dependency list:
-
-~~~
-results.txt : *.dat
-        python zipf_test.py $^ > $@
-~~~
-{: .make}
-
-Let's update our text files and re-run our rule:
-
-~~~
-$ touch books/*.txt
-$ make results.txt
-~~~
-{: .bash}
-
-We get the same as above.
-
-Now let's delete the data files and re-run our rule:
-
-~~~
-$ make clean
-$ make results.txt
-~~~
-{: .bash}
-
-We get:
-
-~~~
-make: *** No rule to make target `*.dat', needed by `results.txt'.  Stop.
-~~~
-{: .error}
-
-As there are no files that match the pattern `*.dat` the name `*.dat`
-is used as a file name itself, and there is no file matching that, nor
-any rule so we get an error. We need to explicitly rebuild the `.dat`
-files first:
-
-~~~
-$ make dats
-$ make results.txt
-~~~
-{: .bash}
 
 > ## Update Dependencies
 >
@@ -174,24 +131,12 @@ $ make results.txt
 > > ## Solution
 > > `4.` Only `results.txt` recreated.
 > >
-> > You can check that `*.dat` is being expanded in the target of the rule
-> > for `results.txt` by echoing the value of the automatic variable `$^`
-> > (all dependencies of the current rule).
-> >
-> > ~~~
-> > results.txt: *.dat
-> >     @echo $^
-> >     python zipf_test.py $^ > $@
-> > ~~~
-> > {: .make}
-> >
 > > The rules for `*.dat` are not executed because their corresponding `.txt` files
 > > haven't been modified.
 > >
 > > If you run:
 > >
 > > ~~~
-> > $ touch *.dat
 > > $ touch books/*.txt
 > > $ make results.txt
 > > ~~~

@@ -61,7 +61,7 @@ Information that was implicit in our shell script - that we are
 generating a file called `isles.dat` and that creating this file
 requires `books/isles.txt` - is now made explicit by Make's syntax.
 
-Let's first sure we start from scratch and delete the `.dat` and `.png`
+Let's first ensure we start from scratch and delete the `.dat` and `.png`
 files we created earlier:
 
 ~~~
@@ -175,34 +175,6 @@ that, either directly or indirectly, depend on the file that
 changed. This is called an [incremental
 build]({{ page.root }}/reference/#incremental-build).
 
-> ## "Up to Date" Versus "Nothing to be Done"
->
-> If we ask Make to build a file that already exists and is up to
-> date, then Make informs us that:
->
-> ~~~
-> make: `isles.dat' is up to date.
-> ~~~
-> {: .output}
->
-> If we ask Make to build a file that exists but for which there is
-> no rule in our Makefile, then we get message like:
->
-> ~~~
-> $ make wordcount.py
-> ~~~
-> {: .bash}
->
-> ~~~
-> make: Nothing to be done for `wordcount.py'.
-> ~~~
-> {: .output}
->
-> `up to date` means that the Makefile has a rule for the file and
-> the file is up to date whereas `Nothing to be done` means that
-> the file exists but the Makefile has no rule for it.
-{: .callout}
-
 > ## Makefiles as Documentation
 >
 > By explicitly recording the inputs to and outputs from steps in our
@@ -249,6 +221,39 @@ Now, we get:
 python wordcount.py books/abyss.txt abyss.dat
 ~~~
 {: .output}
+
+> ## "Up to Date" Versus "Nothing to be Done"
+>
+> If we ask Make to build a file that already exists and is up to
+> date, then Make informs us that:
+>
+> ~~~
+> make: `isles.dat' is up to date.
+> ~~~
+> {: .output}
+>
+> If we ask Make to build a file that exists but for which there is
+> no rule in our Makefile, then we get message like:
+>
+> ~~~
+> $ make wordcount.py
+> ~~~
+> {: .bash}
+>
+> ~~~
+> make: Nothing to be done for `wordcount.py'.
+> ~~~
+> {: .output}
+>
+> `up to date` means that the Makefile has a rule with one or more actions
+> whose target is the name of a file (or directory) and the file is up to date.
+>
+> `Nothing to be done` means that
+> the file exists but either :
+> - the Makefile has no rule for it, or
+> - the Makefile has a rule for it, but that rule has no actions
+{: .callout}
+
 
 We may want to remove all our data files so we can explicitly recreate
 them all. We can introduce a new target, and associated rule, to do
@@ -373,19 +378,19 @@ python wordcount.py books/abyss.txt abyss.dat
 ~~~
 {: .output}
 
-If we run `dats` again,
-
+If we run `dats` again, then Make will see that the dependencies (isles.dat
+and abyss.dat) are already up to date. 
+Given the target `dats` has no actions, there is `nothing to be done`:
 ~~~
 $ make dats
 ~~~
 {: .bash}
 
-then Make sees that the data files exist:
-
 ~~~
 make: Nothing to be done for `dats'.
 ~~~
 {: .output}
+
 
 Our Makefile now looks like this:
 

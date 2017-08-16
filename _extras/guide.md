@@ -29,6 +29,8 @@ Solutions for challenges are used in subsequent topics.
 A number of example Makefiles, including sample solutions to
 challenges, are in `code/samples` and are identified below.
 
+It can be useful to use two windows during the lesson, one with the terminal where you run the `make` commands, the other with the Makefile opened in a text editor all the time. This makes it possible to refer to the Makefile while explaining the output from the commandline, for example. Make sure, though, that the text in both windows is readable from the back of the room.
+
 ## Setting up Make
 
 Recommend instructors and students use `nano` as the text editor for
@@ -129,11 +131,44 @@ $ which makefile2graph
 To create the image files for the lesson:
 
 ~~~
-$ make figures
+$ make diagrams
 ~~~
 {: .bash}
 
 See `commands.mk`'s `diagrams` target.
+
+## UnicodeDecodeError troubleshooting
+
+When processing `books/last.txt` with Python 3 and vanilla shell environment on Arch Linux
+the following error has appeared:
+
+~~~
+$ python wordcount.py books/last.txt last.dat
+~~~
+{: .bash}
+~~~
+Traceback (most recent call last):
+  File "wordcount.py", line 131, in <module>
+    word_count(input_file, output_file, min_length)
+  File "wordcount.py", line 118, in word_count
+    lines = load_text(input_file)
+  File "wordcount.py", line 14, in load_text
+    lines = input_fd.read().splitlines()
+  File "/usr/lib/python3.6/encodings/ascii.py", line 26, in decode
+    return codecs.ascii_decode(input, self.errors)[0]
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 6862: ordinal not in range(128)
+~~~
+{: .output}
+
+The workaround was to define encoding for the terminal session (this can be either done at the command line
+or placed in the `.bashrc` or equivalent):
+
+~~~
+$ export LC_ALL=en_US.UTF-8
+$ export LANG=en_US.UTF-8
+$ export LANGUAGE=en_US.UTF-8
+~~~
+{: .bash}
 
 [graphviz]: http://www.graphviz.org/
 [lesson-example]: https://github.com/swcarpentry/lesson-example/

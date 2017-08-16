@@ -1,7 +1,7 @@
 include config.mk
 
 # Generate summary table.
-results.txt : *.dat $(ZIPF_SRC)
+results.txt : $(ZIPF_SRC) isles.dat abyss.dat last.dat
 	$(ZIPF_EXE) *.dat > $@
 
 # Count words.
