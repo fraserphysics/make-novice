@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 BOOKS=books
 TXT_FILES=$(wildcard $(BOOKS)/*.txt)
 DAT_FILES=$(patsubst $(BOOKS)/%.txt, %.dat, $(TXT_FILES))
@@ -20,7 +21,7 @@ results.tex : $(DAT_FILES) zipf_test.py
 
 ## file_list.tex : Make list of files under version control, ie, source files
 file_list.tex:
-	echo "\\\begin{verbatim}\n$$ git ls-files" > $@
+	echo "\\begin{verbatim}\n$$ git ls-files" > $@
 	git ls-files >> $@
 	echo "\end{verbatim}" >> $@
 
