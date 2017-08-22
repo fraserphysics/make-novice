@@ -3,7 +3,7 @@ BOOKS=books
 TXT_FILES=$(wildcard $(BOOKS)/*.txt)
 DAT_FILES=$(patsubst $(BOOKS)/%.txt, %.dat, $(TXT_FILES))
 PDF_FILES=$(patsubst $(BOOKS)/%.txt, %.pdf, $(TXT_FILES))
-
+PYTHON = /usr/bin/python2
 ## report.pdf    : Build document that is default target
 report.pdf: report.bbl 
 	pdflatex report
@@ -17,7 +17,7 @@ report.bbl: local.bib report.aux
 
 ## results.tex   : Make Zipf summary table.
 results.tex : $(DAT_FILES) zipf_test.py
-	python zipf_test.py --latex *.dat > $@
+	${PYTHON} zipf_test.py --latex *.dat > $@
 
 ## file_list.tex : Make list of files under version control, ie, source files
 file_list.tex:
@@ -30,14 +30,14 @@ file_list.tex:
 dats : $(DAT_FILES)
 
 %.dat : $(BOOKS)/%.txt wordcount.py
-	python wordcount.py $< $*.dat
+	${PYTHON} wordcount.py $< $*.dat
 
 ## %head         : Print the first two fields of the first ten lines of %dat
 %.head : %.dat
 	head $< |awk '{print $$1, $$2}' > $@
 
 %.pdf : %.dat plotcount.py
-	python plotcount.py $*.dat $*.pdf
+	${PYTHON} plotcount.py $*.dat $*.pdf
 
 ## clean         : Remove auto-generated files.
 .PHONY : clean
