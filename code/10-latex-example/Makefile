@@ -5,7 +5,7 @@ DAT_FILES=$(patsubst $(BOOKS)/%.txt, %.dat, $(TXT_FILES))
 PDF_FILES=$(patsubst $(BOOKS)/%.txt, %.pdf, $(TXT_FILES))
 
 ## report.pdf    : Build document that is default target
-report.pdf: report.bbl 
+report.pdf: report.bbl
 	pdflatex report
 	pdflatex report
 report.aux: report.tex $(PDF_FILES) results.tex file_list.tex abyss.head
@@ -16,8 +16,8 @@ report.bbl: local.bib report.aux
 	bibtex report
 
 ## results.tex   : Make Zipf summary table.
-results.tex : $(DAT_FILES) zipf_test.py
-	python zipf_test.py --latex *.dat > $@
+results.tex : $(DAT_FILES) testzipf.py
+	python testzipf.py --latex *.dat > $@
 
 ## file_list.tex : Make list of files under version control, ie, source files
 file_list.tex:
