@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-BOOKS=../../data/books/
+BOOKS=../../data/books
 PYTHON=python3
 TESTZIPF_SRC=../testzipf.py
 TESTZIPF_EXE=$(PYTHON) $(TESTZIPF_SRC)
