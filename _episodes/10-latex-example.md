@@ -166,7 +166,7 @@ python3 ../testzipf.py --latex  last.dat  isles.dat  abyss.dat  sierra.dat > res
 ~~~
 {: .output}
 ~~~
-$ cat file_list.tex
+$ cat results.tex
 ~~~
 {: .bash}
 ~~~
