@@ -281,5 +281,13 @@ ZIPF_EXE=$(LANGUAGE) $(ZIPF_SRC)
 > * check the results.txt file to see how this book compares to the
 >others
 >
-> Is this cheating? wget https://www.gutenberg.org/ebooks/174.txt.utf-8
+> > ## Solution
+> > Is it silly to put the following target to the Makefile?
+> > ~~~
+> > books/dorian_gray.txt:
+> >	wget -O - https://www.gutenberg.org/ebooks/174.txt.utf-8 \
+> > |tail +37|head -n -370 > $@
+> > ~~~
+> > {: .make}
+> {: .solution}
 {: .challenge}

@@ -185,3 +185,26 @@ $ make
 $ evince report.pdf &
 ~~~
 {: .bash}
+
+> ## Putting part of the Makefile in the document
+>
+> Section 1.1 begins with an excerpt from the Makefile.  How does that
+> get into the document?  Implement a solution that instead copies
+> lines from the Makefile into the document.
+>
+> > ## Solution
+> > Add the following target to the Makefile
+> > ~~~
+> > makefile_tail.tex: Makefile
+> >		echo -e "\\\begin{verbatim}" > $@
+> >		tail -3 $< >> $@
+> >		echo "\end{verbatim}" >> $@
+> > ~~~
+> > {: .make}
+> > and put the following into report.tex
+> > ~~~
+> > \input{makefile_tail.tex}
+> > ~~~
+> > {: .bash}
+> {: .solution}
+{: .challenge}
