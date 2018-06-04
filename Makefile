@@ -65,9 +65,9 @@ MARKDOWN_SRC = \
   index.md \
   CONDUCT.md \
   setup.md \
-  $(wildcard _episodes/*.md) \
+  $(sort $(wildcard _episodes/*.md)) \
   reference.md \
-  $(wildcard _extras/*.md) \
+  $(sort $(wildcard _extras/*.md)) \
   LICENSE.md
 
 # Generated lesson files in the order they appear in the navigation menu.
@@ -75,9 +75,9 @@ HTML_DST = \
   ${DST}/index.html \
   ${DST}/conduct/index.html \
   ${DST}/setup/index.html \
-  $(patsubst _episodes/%.md,${DST}/%/index.html,$(wildcard _episodes/*.md)) \
+  $(patsubst _episodes/%.md,${DST}/%/index.html,$(sort $(wildcard _episodes/*.md))) \
   ${DST}/reference/index.html \
-  $(patsubst _extras/%.md,${DST}/%/index.html,$(wildcard _extras/*.md)) \
+  $(patsubst _extras/%.md,${DST}/%/index.html,$(sort $(wildcard _extras/*.md))) \
   ${DST}/license/index.html
 
 ## lesson-md        : convert Rmarkdown files to markdown
@@ -95,10 +95,6 @@ lesson-check :
 lesson-check-all :
 	@bin/lesson_check.py -s . -p ${PARSER} -l -w
 
-## lesson-figures   : re-generate inclusion displaying all figures.
-lesson-figures :
-	@bin/extract_figures.py -p ${PARSER} ${MARKDOWN_SRC} > _includes/all_figures.html
-
 ## unittest         : run unit tests on checking tools.
 unittest :
 	python bin/test_lesson_check.py
@@ -115,13 +111,13 @@ lesson-fixme :
 	@fgrep -i -n FIXME ${MARKDOWN_SRC} || true
 
 ## archive          : archive files needed by learners
-.PHONY :  archive
-archive : files/$(ZIP_FILE)
-
 BOOKS=data/books/*
 PYTHON_SRC=code/*.py
 ZIP_FILE=make-lesson.zip
 TEMP_DIR=make-lesson
+
+.PHONY :  archive
+archive : files/$(ZIP_FILE)
 
 files/$(ZIP_FILE) : $(BOOKS) $(PYTHON_SRC)
 	@mkdir -p $(TEMP_DIR)/books

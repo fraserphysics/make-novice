@@ -1,7 +1,7 @@
 ---
 title: "Functions"
 teaching: 15
-exercises: 15
+exercises: 5
 questions:
 - "How *else* can I eliminate redundancy in my Makefiles?"
 objectives:
@@ -35,7 +35,7 @@ clean :
 ~~~
 {: .make}
 
-Make has many [functions]({{ page.root }}/reference/#function) which can be used to
+Make has many [functions]({{ page.root }}/reference#function) which can be used to
 write more complex rules. One example is `wildcard`. `wildcard` gets a
 list of files matching some pattern, which we can then save in a
 variable. So, for example, we can get a list of all our text files
@@ -103,8 +103,8 @@ We can extend `variables` to show the value of `DAT_FILES` too:
 ~~~
 .PHONY : variables
 variables:
-        @echo TXT_FILES: $(TXT_FILES)
-        @echo DAT_FILES: $(DAT_FILES)
+	@echo TXT_FILES: $(TXT_FILES)
+	@echo DAT_FILES: $(DAT_FILES)
 ~~~
 {: .make}
 
@@ -133,8 +133,8 @@ dats : $(DAT_FILES)
 
 .PHONY : clean
 clean :
-        rm -f $(DAT_FILES)
-        rm -f results.txt
+	rm -f $(DAT_FILES)
+	rm -f results.txt
 ~~~
 {: .make}
 
@@ -157,18 +157,18 @@ $ make dats
 We get:
 
 ~~~
-python wordcount.py books/abyss.txt abyss.dat
-python wordcount.py books/isles.txt isles.dat
-python wordcount.py books/last.txt last.dat
-python wordcount.py books/sierra.txt sierra.dat
+python countwords.py books/abyss.txt abyss.dat
+python countwords.py books/isles.txt isles.dat
+python countwords.py books/last.txt last.dat
+python countwords.py books/sierra.txt sierra.dat
 ~~~
 {: .output}
 
-We can also rewrite `results.txt`: 
+We can also rewrite `results.txt`:
 
 ~~~
-results.txt : $(DAT_FILES) $(ZIPF_SRC)
-        $(ZIPF_EXE) $(DAT_FILES) > $@
+results.txt : $(ZIPF_SRC) $(DAT_FILES)
+	$(ZIPF_EXE) $(DAT_FILES) > $@
 ~~~
 {: .make}
 
@@ -183,11 +183,11 @@ $ make results.txt
 We get:
 
 ~~~
-python wordcount.py books/abyss.txt abyss.dat
-python wordcount.py books/isles.txt isles.dat
-python wordcount.py books/last.txt last.dat
-python wordcount.py books/sierra.txt sierra.dat
-python zipf_test.py  last.dat  isles.dat  abyss.dat  sierra.dat > results.txt
+python countwords.py books/abyss.txt abyss.dat
+python countwords.py books/isles.txt isles.dat
+python countwords.py books/last.txt last.dat
+python countwords.py books/sierra.txt sierra.dat
+python testzipf.py  last.dat  isles.dat  abyss.dat  sierra.dat > results.txt
 ~~~
 {: .output}
 
@@ -219,7 +219,7 @@ TXT_FILES=$(wildcard books/*.txt)
 DAT_FILES=$(patsubst books/%.txt, %.dat, $(TXT_FILES))
 
 # Generate summary table.
-results.txt : $(DAT_FILES) $(ZIPF_SRC)
+results.txt : $(ZIPF_SRC) $(DAT_FILES)
 	$(ZIPF_EXE) $(DAT_FILES) > $@
 
 # Count words.
@@ -245,12 +245,13 @@ Remember, the `config.mk` file contains:
 
 ~~~
 # Count words script.
-COUNT_SRC=wordcount.py
-COUNT_EXE=python $(COUNT_SRC)
+LANGUAGE=python
+COUNT_SRC=countwords.py
+COUNT_EXE=$(LANGUAGE) $(COUNT_SRC)
 
 # Test Zipf's rule
-ZIPF_SRC=zipf_test.py
-ZIPF_EXE=python $(ZIPF_SRC)
+ZIPF_SRC=testzipf.py
+ZIPF_EXE=$(LANGUAGE) $(ZIPF_SRC)
 ~~~
 {: .make}
 
@@ -263,19 +264,30 @@ ZIPF_EXE=python $(ZIPF_SRC)
 
 > ## Adding more books
 >
-> We can now do a better job at testing Zipf's rule by adding more books. 
+> We can now do a better job at testing Zipf's rule by adding more books.
 > The books we have used come from the [Project Gutenberg](http://www.gutenberg.org/) website.
 > Project Gutenberg offers thousands of free ebooks to download.
 >
 >  **Exercise instructions:**
 >
-> * go to [Project Gutenberg](http://www.gutenberg.org/) and use the search box to find another book, 
+> * go to [Project Gutenberg](http://www.gutenberg.org/) and use the search box to find another book,
 > for example ['The Picture of Dorian Gray'](https://www.gutenberg.org/ebooks/174) from Oscar Wilde.
-> * download the 'Plain Text UTF-8' version and save it to the `books` folder; 
-> choose a short name for the file (**that doesn't include spaces**) e.g. "dorian_gray.txt" 
+> * download the 'Plain Text UTF-8' version and save it to the `books` folder;
+> choose a short name for the file (**that doesn't include spaces**) e.g. "dorian_gray.txt"
 > because the filename is going to be used in the `results.txt` file
-> * optionally, open the file in a text editor and remove extraneous text at the beginning and end 
+> * optionally, open the file in a text editor and remove extraneous text at the beginning and end
 > (look for the phrase `End of Project Gutenberg's [title], by [author]`)
 > * run `make` and check that the correct commands are run, given the dependency tree
-> * check the results.txt file to see how this book compares to the others
+> * check the results.txt file to see how this book compares to the
+>others
+>
+> > ## Solution
+> > Is it silly to put the following target to the Makefile?
+> > ~~~
+> > books/dorian_gray.txt:
+> >	wget -O - https://www.gutenberg.org/ebooks/174.txt.utf-8 \
+> > |tail +37|head -n -370 > $@
+> > ~~~
+> > {: .make}
+> {: .solution}
 {: .challenge}

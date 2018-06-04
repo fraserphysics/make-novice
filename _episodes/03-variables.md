@@ -1,7 +1,7 @@
 ---
 title: "Automatic Variables"
 teaching: 15
-exercises: 15
+exercises: 5
 questions:
 - "How can I abbreviate the rules in my Makefiles?"
 objectives:
@@ -18,25 +18,25 @@ After the exercise at the end of the previous episode, our Makefile looked like 
 ~~~
 # Generate summary table.
 results.txt : isles.dat abyss.dat last.dat
-        python zipf_test.py abyss.dat isles.dat last.dat > results.txt
+        python testzipf.py abyss.dat isles.dat last.dat > results.txt
 
 # Count words.
 .PHONY : dats
 dats : isles.dat abyss.dat last.dat
 
 isles.dat : books/isles.txt
-        python wordcount.py books/isles.txt isles.dat
+	python countwords.py books/isles.txt isles.dat
 
 abyss.dat : books/abyss.txt
-        python wordcount.py books/abyss.txt abyss.dat
+	python countwords.py books/abyss.txt abyss.dat
 
 last.dat : books/last.txt
-        python wordcount.py books/last.txt last.dat
+	python countwords.py books/last.txt last.dat
 
 .PHONY : clean
 clean :
-        rm -f *.dat
-        rm -f results.txt
+	rm -f *.dat
+	rm -f results.txt
 ~~~
 {: .make}
 
@@ -65,7 +65,7 @@ name of the results file name:
 
 ~~~
 results.txt : isles.dat abyss.dat last.dat
-        python zipf_test.py abyss.dat isles.dat last.dat > results.txt
+	python testzipf.py abyss.dat isles.dat last.dat > results.txt
 ~~~
 {: .make}
 
@@ -74,11 +74,11 @@ with `$@`:
 
 ~~~
 results.txt : isles.dat abyss.dat last.dat
-        python zipf_test.py abyss.dat isles.dat last.dat > $@
+	python testzipf.py abyss.dat isles.dat last.dat > $@
 ~~~
 {: .make}
 
-`$@` is a Make [automatic variable]({{ page.root }}/reference/#automatic-variable)
+`$@` is a Make [automatic variable]({{ page.root }}/reference#automatic-variable)
 which means 'the target of the current rule'. When Make is run it will
 replace this variable with the target name.
 
@@ -86,7 +86,7 @@ We can replace the dependencies in the action with `$^`:
 
 ~~~
 results.txt : isles.dat abyss.dat last.dat
-        python zipf_test.py $^ > $@
+	python testzipf.py $^ > $@
 ~~~
 {: .make}
 
@@ -105,10 +105,10 @@ $ make results.txt
 We get:
 
 ~~~
-python wordcount.py books/isles.txt isles.dat
-python wordcount.py books/abyss.txt abyss.dat
-python wordcount.py books/last.txt last.dat
-python zipf_test.py isles.dat abyss.dat last.dat > results.txt
+python countwords.py books/isles.txt isles.dat
+python countwords.py books/abyss.txt abyss.dat
+python countwords.py books/last.txt last.dat
+python testzipf.py isles.dat abyss.dat last.dat > results.txt
 ~~~
 {: .output}
 
@@ -148,13 +148,13 @@ python zipf_test.py isles.dat abyss.dat last.dat > results.txt
 
 As we saw, `$^` means 'all the dependencies of the current rule'. This
 works well for `results.txt` as its action treats all the dependencies
-the same - as the input for the `zipf_test.py` script.
+the same - as the input for the `testzipf.py` script.
 
 However, for some rules, we may want to treat the first dependency
 differently. For example, our rules for `.dat` use their first (and
-only) dependency specifically as the input file to `wordcount.py`. If
+only) dependency specifically as the input file to `countwords.py`. If
 we add additional dependencies (as we will soon do) then we don't want
-these being passed as input files to `wordcount.py` as it expects only
+these being passed as input files to `countwords.py` as it expects only
 one input file to be named when it is invoked.
 
 Make provides an automatic variable for this, `$<` which means 'the
