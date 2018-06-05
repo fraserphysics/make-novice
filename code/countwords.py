@@ -2,6 +2,13 @@
 
 import sys
 
+# Hack to read and write non-asci characters in python3
+if sys.version_info[0] >= 3:
+    def _open(*args):
+        return open(*args, encoding='utf-8')
+else:
+    _open = open
+
 DELIMITERS = ". , ; : ? $ @ ^ < > # % ` ! * - = ( ) [ ] { } / \" '".split()
 
 
@@ -10,7 +17,7 @@ def load_text(filename):
     Load lines from a plain-text file and return these as a list, with
     trailing newlines stripped.
     """
-    with open(filename) as input_fd:
+    with _open(filename) as input_fd:
         lines = input_fd.read().splitlines()
     return lines
 
@@ -20,7 +27,7 @@ def save_word_counts(filename, counts):
     Save a list of [word, count, percentage] lists to a file, in the form
     "word count percentage", one tuple per line.
     """
-    with open(filename, 'w') as output:
+    with _open(filename, 'w') as output:
         for count in counts:
             output.write("%s\n" % " ".join(str(c) for c in count))
 
@@ -32,7 +39,7 @@ def load_word_counts(filename):
     ignored.
     """
     counts = []
-    with open(filename, "r") as input_fd:
+    with _open(filename, "r") as input_fd:
         for line in input_fd:
             if not line.startswith("#"):
                 fields = line.split()

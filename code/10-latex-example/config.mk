@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 BOOKS=../../data/books
-PYTHON=python3
+PYTHON=python
 TESTZIPF_SRC=../testzipf.py
 TESTZIPF_EXE=$(PYTHON) $(TESTZIPF_SRC)
 PLOTCOUNTS_SRC=../plotcounts.py
