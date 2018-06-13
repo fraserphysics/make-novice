@@ -12,7 +12,8 @@ keypoints:
 - "Dependencies are transitive: if A depends on B and B depends on C, a change to C will indirectly trigger an update to A."
 ---
 
-Our Makefile now looks like this:
+Our Makefile now looks like this (fetch with *git checkout
+04-dependencies_...*):
 
 ~~~
 # Generate summary table.
@@ -218,9 +219,9 @@ downstream steps.
 
 We still have to add the `testzipf.py` script as dependency to
 `results.txt`. Given the answer to the challenge above, we cannot use
-`$^` in the rule.  
+`$^` in the rule.
 We can however move `testzipf.py` to be the
-first dependency and then use `$<` to refer to it. 
+first dependency and then use `$<` to refer to it.
 In order to refer to the `.dat` files, we can just use `*.dat` for now (we will
 cover a better solution later on).
 

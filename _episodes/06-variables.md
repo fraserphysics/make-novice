@@ -12,9 +12,10 @@ keypoints:
 - "Reference variables using `$(...)`."
 ---
 
-Despite our efforts, our Makefile still has repeated content, i.e.
-the name of our script -- `countwords.py`, and the program we use to run it -- `python`.
-If we renamed our script we'd have to update our Makefile in multiple places.
+Despite our efforts, our Makefile (available via git) still has
+repeated content, i.e.  the name of our script -- `countwords.py`, and
+the program we use to run it -- `python`.  If we renamed our script
+we'd have to update our Makefile in multiple places.
 
 We can introduce a Make [variable]({{ page.root }}/reference#variable) (called a
 [macro]({{ page.root }}/reference#macro) in some versions of Make) to hold our
@@ -49,7 +50,7 @@ and to replace the variable `COUNT_SRC` with its value `countwords.py`. When
 Make is run it will assign to `COUNT_EXE` the value `python
 countwords.py`.
 
-Defining the variable `COUNT_EXE` in this way avoids repeating `python` in our 
+Defining the variable `COUNT_EXE` in this way avoids repeating `python` in our
 Makefile, and allows us to easily
 change how our script is run (e.g. we might want to use a different
 version of Python and need to change `python` to `python2` -- or we might want to

@@ -20,7 +20,7 @@ them with git and Make.
 Begin by using git
 
 ~~~
-$ git checkout 09-latex_py3
+$ git checkout 09-latex_...
 ~~~
 {: .bash}
 

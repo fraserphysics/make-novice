@@ -13,12 +13,14 @@ keypoints:
 - "Use `$<` to refer to the first dependency of the current rule."
 ---
 
-After the exercise at the end of the previous episode, our Makefile looked like this:
+You can use *git checkout 03-variables_py3* or *git checkout
+03-variables_py2* to get the Makefile from the end of the previous
+episode which looks like this:
 
 ~~~
 # Generate summary table.
 results.txt : isles.dat abyss.dat last.dat
-        python testzipf.py abyss.dat isles.dat last.dat > results.txt
+		python testzipf.py abyss.dat isles.dat last.dat > results.txt
 
 # Count words.
 .PHONY : dats
@@ -39,6 +41,7 @@ clean :
 	rm -f results.txt
 ~~~
 {: .make}
+
 
 Our Makefile has a lot of duplication. For example, the names of text
 files and data files are repeated in many places throughout the

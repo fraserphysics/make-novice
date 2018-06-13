@@ -11,11 +11,11 @@ keypoints:
 - "Use the special variable `$*` to refer to matching sets of files in actions."
 ---
 
-Our Makefile still has repeated content. The rules for each `.dat`
-file are identical apart from the text and data file names. We can
-replace these rules with a single [pattern
-rule]({{ page.root }}/reference#pattern-rule) which can be used to build any
-`.dat` file from a `.txt` file in `books/`:
+Our Makefile (available via git) still has repeated content. The rules
+for each `.dat` file are identical apart from the text and data file
+names. We can replace these rules with a
+single [pattern rule]({{ page.root }}/reference#pattern-rule) which
+can be used to build any `.dat` file from a `.txt` file in `books/`:
 
 ~~~
 %.dat : books/%.txt countwords.py
@@ -107,7 +107,6 @@ but then we wouldn't have learned about `$*`.
 
 ```
 %.dat : books/%.txt countwords.py
-      python countwords.py $< $@
+	  python countwords.py $< $@
 ```
 {: .make}
-

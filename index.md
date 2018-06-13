@@ -36,5 +36,8 @@ the same concepts as Make.
 
 > ## Setup
 > In order to follow this lesson, you will need to download some files.
-> Please follow instructions on the [setup]({{ page.root }}/setup) page.
+> Please follow instructions on the [setup]({{ page.root }}/setup)
+> page.  Use *python --version* to see if you are using version 2
+> or 3.  Then issue *git checkout 01-intro_py2* or  *git checkout
+> 01-intro_py3* respectively to start with the appropriate files.
 {: .prereq}

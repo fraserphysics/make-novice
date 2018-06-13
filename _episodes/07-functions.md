@@ -12,7 +12,7 @@ keypoints:
 - "Use `patsubst` function to rewrite file names."
 ---
 
-At this point, we have the following Makefile:
+At this point, we have the following Makefile (available via git):
 
 ~~~
 include config.mk
