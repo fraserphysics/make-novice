@@ -17,24 +17,22 @@ Here we wrap previous work in a LaTeX document.  An advantage of LaTeX
 is that the source files are simply text files.  Thus you can manage
 them with git and Make.
 
-Begin by using git to fetch the source for the entire lesson and going
-to the git branch called latex.
+Begin by using git
 
 ~~~
-$ git clone -b latex https://github.com/fraserphysics/make-novice.git
+$ git checkout 09-latex_py3
 ~~~
 {: .bash}
 
-Next change to the directory of code for this epsiode, and list the files.
+Next list the files.
 
 ~~~
-$ cd make-novice/code/10-latex-example
 $ ls
 ~~~
 {: .bash}
 
 ~~~
-config.mk  local.bib  Makefile  report.tex
+books  countwords.py  local.bib  Makefile  plotcounts.py  __pycache__  report.tex  testzipf.py
 ~~~
 {: .output}
 
@@ -46,15 +44,15 @@ $ make -n
 {: .bash}
 
 ~~~
-python3 ../countwords.py ../../data/books//last.txt last.dat
-python3 ../plotcounts.py last.dat last.pdf
-python3 ../countwords.py ../../data/books//isles.txt isles.dat
-python3 ../plotcounts.py isles.dat isles.pdf
-python3 ../countwords.py ../../data/books//abyss.txt abyss.dat
-python3 ../plotcounts.py abyss.dat abyss.pdf
-python3 ../countwords.py ../../data/books//sierra.txt sierra.dat
-python3 ../plotcounts.py sierra.dat sierra.pdf
-python3 ../testzipf.py --latex  last.dat  isles.dat  abyss.dat  sierra.dat > results.tex
+python countwords.py books/abyss.txt abyss.dat
+python plotcounts.py abyss.dat abyss.pdf
+python countwords.py books/isles.txt isles.dat
+python plotcounts.py isles.dat isles.pdf
+python countwords.py books/last.txt last.dat
+python plotcounts.py last.dat last.pdf
+python countwords.py books/sierra.txt sierra.dat
+python plotcounts.py sierra.dat sierra.pdf
+python testzipf.py --latex  abyss.dat  isles.dat  last.dat  sierra.dat > results.tex
 echo -e "\\\begin{verbatim}\n$ git ls-files" > file_list.tex
 git ls-files >> file_list.tex
 echo "\end{verbatim}" >> file_list.tex
@@ -63,13 +61,12 @@ pdflatex report
 bibtex report
 pdflatex report
 pdflatex report
+
 ~~~
 {: .output}
 
-The major new features in python business at the beginning is that the
-program files and the books are in different places and that the plots
-are in pdf format.  Look at the file config.mk to see where those
-locations are specified.
+The major new features in the python calls are that the plots
+are in pdf format.  The other new features work with latex or *LaTeX*
 
 Now look at the Makefile.
 
@@ -97,9 +94,9 @@ $ make variables
 {: .bash}
 
 ~~~
-TXT_FILES: ../../data/books//last.txt ../../data/books//isles.txt ../../data/books//abyss.txt ../../data/books//sierra.txt
-DAT_FILES: last.dat isles.dat abyss.dat sierra.dat
-PLOT_FILES: last.pdf isles.pdf abyss.pdf sierra.pdf
+TXT_FILES: books/abyss.txt books/isles.txt books/last.txt books/sierra.txt
+DAT_FILES: abyss.dat isles.dat last.dat sierra.dat
+PLOT_FILES: abyss.pdf isles.pdf last.pdf sierra.pdf
 ~~~
 {: .output}
 
@@ -119,13 +116,13 @@ $ make last.pdf isles.pdf abyss.pdf sierra.pdf
 > >
 > > Look at the pattern rules for %.dat and %.pdf
 > > ~~~
-> > # EG makes abyss.dat from $(BOOKS)/abyss.txt
-> > %.dat : $(BOOKS)/%.txt $(COUNTWORDS_SRC)
-> >	$(COUNTWORDS_EXE) $< $*.dat
+> > # EG makes abyss.dat from books/abyss.txt
+> > %.dat : books/%.txt countwords.py
+> >	python countwords.py $< $*.dat
 > >
 > > # EG makes abyss.pdf from abyss.dat
-> > %.pdf : %.dat $(PLOTCOUNTS_SRC)
-> > $(PLOTCOUNTS_EXE) $*.dat $*.pdf
+> > %.pdf : %.dat plotcounts.py
+> > python plotcounts.py $*.dat $*.pdf
 > > ~~~
 > > {: .make}
 > {: .solution}
