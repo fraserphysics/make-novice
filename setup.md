@@ -33,26 +33,17 @@ You need to download some files to follow this lesson:
    ~~~
    {: .bash}
 ~~~
-* 01-intro_py2
-  remotes/origin/01-intro_py2
-  remotes/origin/01-intro_py3
-  remotes/origin/02-makefiles_py2
-  remotes/origin/02-makefiles_py3
-  remotes/origin/03-variables_py2
-  remotes/origin/03-variables_py3
-  remotes/origin/04-dependencies_py2
-  remotes/origin/04-dependencies_py3
-  remotes/origin/05-patterns_py2
-  remotes/origin/05-patterns_py3
-  remotes/origin/06-variables_py2
-  remotes/origin/06-variables_py3
-  remotes/origin/07-functions_py2
-  remotes/origin/07-functions_py3
-  remotes/origin/08-self-doc_py2
-  remotes/origin/08-self-doc_py3
-  remotes/origin/09-latex_py2
-  remotes/origin/09-latex_py3
-  remotes/origin/HEAD -> origin/01-intro_py2
+* 01-intro
+  remotes/origin/01-intro
+  remotes/origin/02-makefiles
+  remotes/origin/03-variables
+  remotes/origin/04-dependencies
+  remotes/origin/05-patterns
+  remotes/origin/06-variables
+  remotes/origin/07-functions
+  remotes/origin/08-self-doc
+  remotes/origin/09-latex
+  remotes/origin/HEAD -> origin/01-intro
 ~~~
 {: .output}
 

@@ -13,7 +13,7 @@ keypoints:
 ---
 
 Our Makefile now looks like this (fetch with *git checkout
-04-dependencies_...*):
+04-dependencies*):
 
 ~~~
 # Generate summary table.

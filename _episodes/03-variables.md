@@ -13,9 +13,8 @@ keypoints:
 - "Use `$<` to refer to the first dependency of the current rule."
 ---
 
-You can use *git checkout 03-variables_py3* or *git checkout
-03-variables_py2* to get the Makefile from the end of the previous
-episode which looks like this:
+You can use *git checkout 03-variables* to get the Makefile from the
+end of the previous episode which looks like this:
 
 ~~~
 # Generate summary table.
