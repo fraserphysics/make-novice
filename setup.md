@@ -6,7 +6,11 @@ root: .
 
 ## Files
 
-You need to download some files to follow this lesson:
+You need to clone a git repository to get files to follow this lesson.
+We've made a seperate branch in the repository for each episode so
+that as we transition from one episode to the next you can save your
+work on the old branch and check-out the next branch to get files that
+are identical to the ones the instructor is using.  Here are the steps
 
 1. Open a Bash shell window.
 
