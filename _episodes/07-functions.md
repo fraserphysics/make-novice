@@ -12,7 +12,8 @@ keypoints:
 - "Use `patsubst` function to rewrite file names."
 ---
 
-At this point, we have the following Makefile (available via git):
+At this point, we have the following Makefile (available via *git
+checkout 07-functions*):
 
 ~~~
 include config.mk
@@ -291,3 +292,5 @@ now we have introduced our function:
 > > {: .make}
 > {: .solution}
 {: .challenge}
+
+{% include links.md %}

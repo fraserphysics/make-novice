@@ -22,35 +22,36 @@ steps:
    ~~~
    $ git clone https://github.com/fraserphysics/setup_make_novice.git make-lesson
    ~~~
-   {: .bash}
+   {: .language-bash}
 
 4. Change into the `make-lesson` directory:
 
    ~~~
    $ cd make-lesson
    ~~~
-   {: .bash}
+   {: .language-bash}
 
 5. Verify that you have a branch for each episode:
 
    ~~~
    $ git branch -a
    ~~~
-   {: .bash}
-~~~
-* 01-intro
-  remotes/origin/01-intro
-  remotes/origin/02-makefiles
-  remotes/origin/03-variables
-  remotes/origin/04-dependencies
-  remotes/origin/05-patterns
-  remotes/origin/06-variables
-  remotes/origin/07-functions
-  remotes/origin/08-self-doc
-  remotes/origin/09-latex
-  remotes/origin/HEAD -> origin/01-intro
-~~~
-{: .output}
+   {: .language-bash}
+
+	~~~
+	* 01-intro
+	remotes/origin/01-intro
+	remotes/origin/02-makefiles
+	remotes/origin/03-variables
+	remotes/origin/04-dependencies
+	remotes/origin/05-patterns
+	remotes/origin/06-variables
+	remotes/origin/07-functions
+	remotes/origin/08-self-doc
+	remotes/origin/09-latex
+	remotes/origin/HEAD -> origin/01-intro
+	~~~
+	{: .output}
 
 ## Software
 

@@ -379,7 +379,7 @@ python countwords.py books/abyss.txt abyss.dat
 {: .output}
 
 If we run `dats` again, then Make will see that the dependencies (isles.dat
-and abyss.dat) are already up to date. 
+and abyss.dat) are already up to date.
 Given the target `dats` has no actions, there is `nothing to be done`:
 ~~~
 $ make dats
@@ -438,3 +438,5 @@ The following figure shows the dependencies embodied within our
 Makefile, involved in building the `results.txt` target:
 
 ![results.txt dependencies represented within the Makefile](../fig/02-makefile-challenge.png "results.txt dependencies represented within the Makefile")
+
+{% include links.md %}

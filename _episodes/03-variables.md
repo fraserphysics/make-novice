@@ -175,3 +175,5 @@ first dependency of the current rule'.
 > > for a solution to this challenge.
 > {: .solution}
 {: .challenge}
+
+{% include links.md %}

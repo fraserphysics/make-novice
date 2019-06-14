@@ -194,12 +194,12 @@ $ cat results.txt
 This shell script solves several problems in computational reproducibility:
 
 1.  It explicitly documents our pipeline,
-    making communication with colleagues (and our future selves) more efficient.
+	making communication with colleagues (and our future selves) more efficient.
 2.  It allows us to type a single command, `bash run_pipeline.sh`, to
-    reproduce the full analysis.
+	reproduce the full analysis.
 3.  It prevents us from _repeating_ typos or mistakes.
-    You might not get it right the first time, but once you fix something
-    it'll stay fixed.
+	You might not get it right the first time, but once you fix something
+	it'll stay fixed.
 
 Despite these benefits it has a few shortcomings.
 
@@ -222,7 +222,7 @@ for-loop.)
 
 ~~~
 for book in abyss isles; do
-    python plotcounts.py $book.dat $book.png
+	python plotcounts.py $book.dat $book.png
 done
 ~~~
 {: .language-bash}
@@ -312,3 +312,5 @@ Make, we mean GNU Make.
 [gnu-make]: http://www.gnu.org/software/make/
 [nmake]: https://msdn.microsoft.com/en-us/library/dd9y37ha.aspx
 [zipfs-law]: http://en.wikipedia.org/wiki/Zipf%27s_law
+
+{% include links.md %}

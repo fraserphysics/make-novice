@@ -22,14 +22,14 @@ Begin by using git
 ~~~
 $ git checkout 09-latex
 ~~~
-{: .bash}
+{: .language-bash}
 
 Next list the files.
 
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 books  countwords.py  local.bib  Makefile  plotcounts.py  __pycache__  report.tex  testzipf.py
@@ -41,7 +41,7 @@ Now see how the default target would be built.
 ~~~
 $ make -n
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 python countwords.py books/abyss.txt abyss.dat
@@ -66,7 +66,7 @@ pdflatex report
 {: .output}
 
 The major new features in the python calls are that the plots
-are in pdf format.  The other new features work with latex or *LaTeX*
+are in pdf format.  The other new features work with *LaTeX*
 
 Now look at the Makefile.
 
@@ -75,7 +75,7 @@ Issue the following commands:
 ~~~
 $ make help
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
  all           : The default target is report.pdf
@@ -91,7 +91,7 @@ $ make help
 ~~~
 $ make variables
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 TXT_FILES: books/abyss.txt books/isles.txt books/last.txt books/sierra.txt
@@ -105,7 +105,7 @@ Now make all of the PLOT_FILES
 ~~~
 $ make last.pdf isles.pdf abyss.pdf sierra.pdf
 ~~~
-{: .bash}
+{: .language-bash}
 
 
 > ## Figure out how make builds the plots
@@ -132,7 +132,7 @@ Next, make and examine the targets file_list.tex and results.tex
 ~~~
 $ make file_list.tex
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 echo -e "\\\begin{verbatim}\n$ git ls-files" > file_list.tex
 git ls-files >> file_list.tex
@@ -142,7 +142,7 @@ echo "\end{verbatim}" >> file_list.tex
 ~~~
 $ cat file_list.tex
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 \begin{verbatim}
 $ git ls-files
@@ -157,7 +157,7 @@ This is the list of files wrapped in LaTeX markup,
 ~~~
 $ make results.tex
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 python3 ../testzipf.py --latex  last.dat  isles.dat  abyss.dat  sierra.dat > results.tex
 ~~~
@@ -165,7 +165,7 @@ python3 ../testzipf.py --latex  last.dat  isles.dat  abyss.dat  sierra.dat > res
 ~~~
 $ cat results.tex
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 Book & First & Second & Ratio\\ \hline
 last & 12244 & 5566 & 2.20 \\
@@ -181,7 +181,7 @@ Now make the default target and eximine the result>
 $ make
 $ evince report.pdf &
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Putting part of the Makefile in the document
 >
@@ -202,6 +202,8 @@ $ evince report.pdf &
 > > ~~~
 > > \input{makefile_tail.tex}
 > > ~~~
-> > {: .bash}
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
+
+{% include links.md %}

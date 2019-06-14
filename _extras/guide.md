@@ -72,7 +72,7 @@ To recreate `make-lesson.zip`, run:
 ~~~
 $ make make-lesson.zip
 ~~~
-{: .bash}
+{: .language-bash}
 
 ## Beware of Spaces!
 
@@ -93,7 +93,7 @@ To install GraphViz on Scientific Linux 6:
 $ sudo yum install graphviz
 $ dot -V
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 dot - graphviz version 2.26.0 (20091210.2329)
 ~~~
@@ -105,7 +105,7 @@ To install GraphViz on Ubuntu 14.04.3 and 15.10:
 $ sudo apt-get install graphviz
 $ dot -V
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 dot - graphviz version 2.38.0 (20140413.2041)
 ~~~
@@ -122,7 +122,7 @@ $ export PATH=~/makefile2graph/:$PATH
 $ cd
 $ which makefile2graph
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 /home/ubuntu/makefile2graph/makefile2graph
 ~~~
@@ -133,7 +133,7 @@ To create the image files for the lesson:
 ~~~
 $ make diagrams
 ~~~
-{: .bash}
+{: .language-bash}
 
 See `commands.mk`'s `diagrams` target.
 
@@ -145,17 +145,17 @@ the following error has appeared:
 ~~~
 $ python wordcount.py books/last.txt last.dat
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 Traceback (most recent call last):
   File "wordcount.py", line 131, in <module>
-    word_count(input_file, output_file, min_length)
+	word_count(input_file, output_file, min_length)
   File "wordcount.py", line 118, in word_count
-    lines = load_text(input_file)
+	lines = load_text(input_file)
   File "wordcount.py", line 14, in load_text
-    lines = input_fd.read().splitlines()
+	lines = input_fd.read().splitlines()
   File "/usr/lib/python3.6/encodings/ascii.py", line 26, in decode
-    return codecs.ascii_decode(input, self.errors)[0]
+	return codecs.ascii_decode(input, self.errors)[0]
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 6862: ordinal not in range(128)
 ~~~
 {: .output}
@@ -168,7 +168,7 @@ $ export LC_ALL=en_US.UTF-8
 $ export LANG=en_US.UTF-8
 $ export LANGUAGE=en_US.UTF-8
 ~~~
-{: .bash}
+{: .language-bash}
 
 [graphviz]: http://www.graphviz.org/
 [lesson-example]: https://github.com/carpentries/lesson-example/

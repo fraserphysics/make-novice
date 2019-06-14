@@ -12,10 +12,11 @@ keypoints:
 - "Reference variables using `$(...)`."
 ---
 
-Despite our efforts, our Makefile (available via git) still has
-repeated content, i.e.  the name of our script -- `countwords.py`, and
-the program we use to run it -- `python`.  If we renamed our script
-we'd have to update our Makefile in multiple places.
+Despite our efforts, our Makefile (available via *git checkout
+06-variables*) still has repeated content, i.e.  the name of our
+script -- `countwords.py`, and the program we use to run it --
+`python`.  If we renamed our script we'd have to update our Makefile
+in multiple places.
 
 We can introduce a Make [variable]({{ page.root }}/reference#variable) (called a
 [macro]({{ page.root }}/reference#macro) in some versions of Make) to hold our
@@ -116,3 +117,5 @@ flexible and reusable code.
 > and [its accompanying `config.mk`]({{ page.root }}/code/06-variables/config.mk)
 > contain all of our work so far.
 {: .callout}
+
+{% include links.md %}

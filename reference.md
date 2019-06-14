@@ -10,7 +10,7 @@ To run Make:
 ~~~
 $ make
 ~~~
-{: .bash}
+{: .language-bash}
 
 Make will look for a Makefile called `Makefile` and will build the
 default target, the first target in the Makefile.
@@ -20,14 +20,14 @@ To use a Makefile with a different name, use the `-f` flag e.g.
 ~~~
 $ make -f build-files/analyze.mk
 ~~~
-{: .bash}
+{: .language-bash}
 
 To build a specific target, provide it as an argument e.g.
 
 ~~~
 $ make isles.dat
 ~~~
-{: .bash}
+{: .language-bash}
 
 If the target is up-to-date, Make will print a message like:
 
@@ -42,14 +42,14 @@ running the actions, use the `--dry-run` flag e.g.
 ~~~
 $ make --dry-run isles.dat
 ~~~
-{: .bash}
+{: .language-bash}
 
 Alternatively, use the abbreviation `-n`.
 
 ~~~
 $ make -n isles.dat
 ~~~
-{: .bash}
+{: .language-bash}
 
 ## Trouble Shooting
 
@@ -82,9 +82,9 @@ Rules:
 target : dependency1 dependency2 ...
 	action1
 	action2
-        ...
+		...
 ~~~
-{: .make}
+{: .language-make}
 
 * Each rule has a target, a file to be created, or built.
 * Each rule has zero or more dependencies, files that are needed to
@@ -110,16 +110,16 @@ Comments:
 ~~~
 # This is a Make comment.
 ~~~
-{: .make}
+{: .language-make}
 
 Line continuation character:
 
 ~~~
 ARCHIVE = isles.dat isles.png \
-          abyss.dat abyss.png \
-          sierra.dat sierra.png
+		  abyss.dat abyss.png \
+		  sierra.dat sierra.png
 ~~~
-{: .make}
+{: .language-make}
 
 * If a list of dependencies or an action is too long, a Makefile can
   become more difficult to read.
@@ -134,9 +134,9 @@ Phony targets:
 ~~~
 .PHONY : clean
 clean :
-       rm -f *.dat
+	   rm -f *.dat
 ~~~
-{: .make}
+{: .language-make}
 
 * Phony targets are a short-hand for sequences of actions.
 * No file with the target name is built when a rule with a phony
@@ -153,9 +153,9 @@ Pattern rules:
 
 ~~~
 %.dat : books/%.txt $(COUNT_SRC)
-        $(COUNT_EXE) $< $@
+		$(COUNT_EXE) $< $@
 ~~~
-{: .make}
+{: .language-make}
 
 * The Make wildcard, `%`, specifies a pattern.
 * If Make finds a dependency matching the pattern, then the pattern is
@@ -170,7 +170,7 @@ Defining and using variables:
 COUNT_SRC=wordcount.py
 COUNT_EXE=python $(COUNT_SRC)
 ~~~
-{: .make}
+{: .language-make}
 
 * A variable is assigned a value. For example, `COUNT_SRC`
   is assigned the value `wordcount.py`.
@@ -182,9 +182,9 @@ Suppress printing of actions:
 ~~~
 .PHONY : variables
 variables:
-        @echo TXT_FILES: $(TXT_FILES)
+		@echo TXT_FILES: $(TXT_FILES)
 ~~~
-{: .make}
+{: .language-make}
 
 * Prefix an action by `@` to instruct Make not to print that action.
 
@@ -193,14 +193,14 @@ Include the contents of a Makefile in another Makefile:
 ~~~
 include config.mk
 ~~~
-{: .make}
+{: .language-make}
 
 wildcard function:
 
 ~~~
 TXT_FILES=$(wildcard books/*.txt)
 ~~~
-{: .make}
+{: .language-make}
 
 * Looks for all files matching a pattern e.g. `books/*.txt`, and
   return these in a list.
@@ -212,7 +212,7 @@ patsubst ('path substitution') function:
 ~~~
 DAT_FILES=$(patsubst books/%.txt, %.dat, $(TXT_FILES))
 ~~~
-{: .make}
+{: .language-make}
 
 * Every string that matches `books/%.txt` in `$(TXT_FILES)` is
   replaced by `%.dat` and the strings are returned in a list.
@@ -230,7 +230,7 @@ Default targets:
 ~~~
 .DEFAULT_GOAL := all
 ~~~
-{: .make}
+{: .language-make}
 
 ## Manuals
 
@@ -246,115 +246,115 @@ Default targets:
 {:auto_ids}
 action
 :   The steps a [build manager](#build-manager) must take to create or
-    update a file or other object.
+	update a file or other object.
 
 assignment
 :   A request that [Make](#make) stores something in a
-    [variable](#variable).
+	[variable](#variable).
 
 automatic variable
 :   A variable whose value is automatically redefined for each
-    [rule](#rule). [Make](#make)'s automatic variables include `$@`,
-    which holds the rule's [target](#target), `$^`, which holds its
-    [dependencies](#dependency), and, `$<`, which holds the first of
-    its dependencies, and `$*`, which holds the [stem](#stem) with which
-    the pattern was matched. Automatic variables are typically used in
-    [pattern rules](#pattern-rule).
+	[rule](#rule). [Make](#make)'s automatic variables include `$@`,
+	which holds the rule's [target](#target), `$^`, which holds its
+	[dependencies](#dependency), and, `$<`, which holds the first of
+	its dependencies, and `$*`, which holds the [stem](#stem) with which
+	the pattern was matched. Automatic variables are typically used in
+	[pattern rules](#pattern-rule).
 
 build file
 :   A description of [dependencies](#dependency) and [rules](#rule)
-    for a [build manager](#build-manager).
+	for a [build manager](#build-manager).
 
 build manager
 :   A program, such as [Make](#make), whose main purpose is to build or
-    update software, documentation, web sites, data files, images, and
-    other things.
+	update software, documentation, web sites, data files, images, and
+	other things.
 
 default rule
 :   The [rule](#rule) that is executed if no [target](#target) is
-    specified when a [build manager](#build-manager) is run.
+	specified when a [build manager](#build-manager) is run.
 
 default target
 :   The [target](#target) of the [default rule](#default-rule).
 
 dependency
 :   A file that a [target](#target) depends on. If any of a target's
-    [dependencies](#dependency) are newer than the target itself, the
-    target needs to be updated. A target's dependencies are also
-    called its prerequisites. If a target's dependencies do not exist,
-    then they need to be built first.
+	[dependencies](#dependency) are newer than the target itself, the
+	target needs to be updated. A target's dependencies are also
+	called its prerequisites. If a target's dependencies do not exist,
+	then they need to be built first.
 
 false dependency
 :   This can refer to a [dependency](#dependency) that is artificial.
-    e.g. a false dependency is introduced if a data analysis script
-    is added as a dependency to the data files that the script
-    analyses.
+	e.g. a false dependency is introduced if a data analysis script
+	is added as a dependency to the data files that the script
+	analyses.
 
 function
 :   A built-in [Make](#make) utility that performs some operation, for
-    example gets a list of files matching a pattern.
+	example gets a list of files matching a pattern.
 
 incremental build
 :   The feature of a [build manager](#build-manager) by
-    which it only rebuilds files that, either directory
-    or indirectly, depend on a file that was changed.
+	which it only rebuilds files that, either directory
+	or indirectly, depend on a file that was changed.
 
 macro
 :   Used as a synonym for [variable](#variable) in certain versions of
-    [Make](#make).
+	[Make](#make).
 
 Make
 :   A popular [build manager](#build-manager), from GNU, created in 1977.
 
 Makefile
 :   A [build file](#build-file) used by [Make](#make), which, by
-    default, are named `Makefile`.
+	default, are named `Makefile`.
 
 pattern rule
 :   A [rule](#rule) that specifies a general way to build or update an
-    entire class of files that can be managed the same way. For
-    example, a pattern rule can specify how to compile any C file
-    rather than a single, specific C file, or, to analyze any data
-    file rather than a single, specific data file. Pattern rules
-    typically make use of [automatic variables](#automatic-variable)
-    and [wildcards](#wildcard).
+	entire class of files that can be managed the same way. For
+	example, a pattern rule can specify how to compile any C file
+	rather than a single, specific C file, or, to analyze any data
+	file rather than a single, specific data file. Pattern rules
+	typically make use of [automatic variables](#automatic-variable)
+	and [wildcards](#wildcard).
 
 phony target
 :   A [target](#target) that does not correspond to a file or other
-    object. Phony targets are usually symbolic names for sequences of
-    [actions](#action).
+	object. Phony targets are usually symbolic names for sequences of
+	[actions](#action).
 
 prerequisite
 :   A synonym for [dependency](#dependency).
 
 reference
 :   A request that [Make](#make) substitutes the name of a
-    [variable](#variable) for its value.
+	[variable](#variable) for its value.
 
 rule
 :   A specification of a [target](#target)'s
-    [dependencies](#dependency) and what [actions](#action) need to be
-    executed to build or update the target.
+	[dependencies](#dependency) and what [actions](#action) need to be
+	executed to build or update the target.
 
 stem
 :   The part of the target that was matched by the pattern rule. If
-    the target is `file.dat` and the target pattern was `%.dat`, then
-    the stem `$*` is `file`.
+	the target is `file.dat` and the target pattern was `%.dat`, then
+	the stem `$*` is `file`.
 
 target
 :   A thing to be created or updated, for example a file. Targets can
-    have [dependencies](#dependency) that must exist, and be
-    up-to-date, before the target itself can be built or updated.
+	have [dependencies](#dependency) that must exist, and be
+	up-to-date, before the target itself can be built or updated.
 
 variable
 :   A symbolic name for something in a [Makefile](#makefile).
 
 wildcard
 :   A pattern that can be specified in [dependencies](#dependency) and
-    [targets](#target). If [Make](#make) finds a dependency] matching
-    the pattern, then the pattern is substituted into the
-    target. wildcards are often used in [pattern
-    rules](#pattern-rule). The Make wildcard is `%`.
+	[targets](#target). If [Make](#make) finds a dependency] matching
+	the pattern, then the pattern is substituted into the
+	target. wildcards are often used in [pattern
+	rules](#pattern-rule). The Make wildcard is `%`.
 
 [automatic-variables]: https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 [gnu-make-manual]: https://www.gnu.org/software/make/manual/

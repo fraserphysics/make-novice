@@ -11,9 +11,9 @@ keypoints:
 - "Use the special variable `$*` to refer to matching sets of files in actions."
 ---
 
-Our Makefile (available via git) still has repeated content. The rules
-for each `.dat` file are identical apart from the text and data file
-names. We can replace these rules with a
+Our Makefile (available via *git checkout 05-patterns*) still has
+repeated content. The rules for each `.dat` file are identical apart
+from the text and data file names. We can replace these rules with a
 single [pattern rule]({{ page.root }}/reference#pattern-rule) which
 can be used to build any `.dat` file from a `.txt` file in `books/`:
 
@@ -110,3 +110,5 @@ but then we wouldn't have learned about `$*`.
 	python countwords.py $< $@
 ```
 {: .language-make}
+
+{% include links.md %}
