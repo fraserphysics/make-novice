@@ -19,11 +19,17 @@ keypoints:
 
 Save your work from the previous episode and checkout the branch for
 this episode:
-
 ~~~
 $ git add run_pipeline.sh
 $ git commit -m "my work in class"
 $ git checkout 02-makefiles
+~~~
+{: .language-bash}
+
+Or checkout the branch for this episode without saving your work:
+
+~~~
+$ git checkout -f 02-makefiles
 ~~~
 {: .language-bash}
 
