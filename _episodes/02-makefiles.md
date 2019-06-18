@@ -17,6 +17,16 @@ keypoints:
 - "Use `.PHONY` to mark targets that don't correspond to files."
 ---
 
+Save your work from the previous episode and checkout the branch for
+this episode:
+
+~~~
+$ git add run_pipeline.sh
+$ git commit -m "my work in class"
+$ git checkout 02-makefiles
+~~~
+{: .language-bash}
+
 Create a file, called `Makefile`, with the following content:
 
 ~~~
