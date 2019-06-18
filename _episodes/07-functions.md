@@ -274,7 +274,7 @@ now we have introduced our function:
 > * go to [Project Gutenberg](http://www.gutenberg.org/) and use the search box to find another book,
 > for example ['The Picture of Dorian Gray'](https://www.gutenberg.org/ebooks/174) from Oscar Wilde.
 > * download the 'Plain Text UTF-8' version and save it to the `books` folder;
-> choose a short name for the file (**that doesn't include spaces**) e.g. "dorian_gray.txt"
+> choose a short name for the file (**that doesn't include spaces**) e.g. "gray.txt"
 > because the filename is going to be used in the `results.txt` file
 > * optionally, open the file in a text editor and remove extraneous text at the beginning and end
 > (look for the phrase `End of Project Gutenberg's [title], by [author]`)
@@ -285,7 +285,7 @@ now we have introduced our function:
 > > ## Solution
 > > Is it silly to put the following target to the Makefile?
 > > ~~~
-> > books/dorian_gray.txt:
+> > books/gray.txt:
 > >	wget -O - https://www.gutenberg.org/ebooks/174.txt.utf-8 \
 > > |tail +37|head -n -370 > $@
 > > ~~~

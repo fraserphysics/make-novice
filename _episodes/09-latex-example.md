@@ -197,8 +197,13 @@ $ evince report.pdf &
 > >		tail -3 $< >> $@
 > >		echo "\end{verbatim}" >> $@
 > > ~~~
-> > {: .make}
-> > and put the following into report.tex
+> > {: .language-make}
+> > add *makefile_tail.tex* to *RESULTS* in the Makefile
+> > ~~~
+> > RESULTS=$(PLOT_FILES) results.tex file_list.tex abyss.head makefile_tail.tex
+> > ~~~
+> > and replace the block in report.tex containing the copied
+> > Makefile lines with:
 > > ~~~
 > > \input{makefile_tail.tex}
 > > ~~~
