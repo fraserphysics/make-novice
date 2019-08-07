@@ -112,6 +112,7 @@ it    ###########
 ~~~
 {: .output}
 
+If the `DISPLAY` environment variable is set and works,
 `plotcounts.py` can also show the plot graphically:
 
 ~~~

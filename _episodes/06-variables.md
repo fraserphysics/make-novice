@@ -111,11 +111,6 @@ our source code in `Makefile`. Decoupling code from configuration in
 this way is good programming practice, as it promotes more modular,
 flexible and reusable code.
 
-> ## Where We Are
->
-> [This Makefile]({{ page.root }}/code/06-variables/Makefile)
-> and [its accompanying `config.mk`]({{ page.root }}/code/06-variables/config.mk)
-> contain all of our work so far.
 {: .callout}
 
 {% include links.md %}

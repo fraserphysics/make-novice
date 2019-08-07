@@ -10,6 +10,9 @@ keypoints:
 - "Document Makefiles by adding specially-formatted comments and a target to extract and format them."
 ---
 
+You can use *git checkout 08-self-doc* to switch to a new branch
+for this episode.
+
 Many bash commands, and programs that people have written that can be
 run from within bash, support a `--help` flag to display more
 information on how to use the commands or programs. In this spirit, it
@@ -122,11 +125,6 @@ as we respect our convention of using `##` for such comments, then our
 `help` rule will take care of detecting these comments and printing
 them for us.
 
-> ## Where We Are
->
-> [This Makefile]({{ page.root }}/code/08-self-doc/Makefile)
-> and [its accompanying `config.mk`]({{ page.root }}/code/08-self-doc/config.mk)
-> contain all of our work so far.
 {: .callout}
 
 [sed-docs]: https://www.gnu.org/software/sed/

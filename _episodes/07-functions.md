@@ -256,11 +256,6 @@ now we have introduced our function:
 
 ![results.txt dependencies after introducing a function](../fig/07-functions.png "results.txt dependencies after introducing a function")
 
-> ## Where We Are
->
-> [This Makefile]({{ page.root }}/code/07-functions/Makefile)
-> and [its accompanying `config.mk`]({{ page.root }}/code/07-functions/config.mk)
-> contain all of our work so far.
 {: .callout}
 
 > ## Adding more books

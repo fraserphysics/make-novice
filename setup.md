@@ -87,5 +87,5 @@ necessary python software.
 ### LaTeX (Optional)
 
 The last episode uses the LaTeX document preparation system.  If you
-find it difficult to install, simply listen to the discussion for that
-episode without doing any of the exercises.
+find it too difficult to install, simply skip the exercises that use
+it and follow the discussion.

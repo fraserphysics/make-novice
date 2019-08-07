@@ -93,10 +93,7 @@ clean :
 ~~~
 {: .language-make}
 
-> ## Where We Are
->
-> [This Makefile]({{ page.root }}/code/05-patterns/Makefile)
-> contains all of our work so far.
+
 {: .callout}
 
 This episode has introduced pattern rules, and used the `$*` variable

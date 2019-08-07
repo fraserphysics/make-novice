@@ -10,29 +10,37 @@ keypoints:
    - "make can document how you got your results."
    - "make can simplify trying a variation of your analysis."
    - "make saves time by automating repetitive work."
-   - "make saves time by only rebuilding things that might change."
+   - "make saves time by only rebuilding things that depend on
+   modified files."
 ---
 
-Here we wrap previous work in a LaTeX document.  An advantage of LaTeX
-is that the source files are simply text files.  Thus you can manage
-them with git and Make.
+Here we use LaTeX to wrap previous work into a pdf document.  We can
+manage the entire project with git and Make because LaTeX source files
+are simply text files.
+
+Disadvantages of LaTeX include its complexity and the difficulty of
+installing it on some systems.  Even if the `pdflatex` command in the
+Makefile does not run on your system, the code for building the
+figures will work, and you can see how to use Make to document
+results reproducibly.
 
 Begin by using git
 
 ~~~
-$ git checkout 09-latex
+$ git checkout -f 09-latex
 ~~~
 {: .language-bash}
 
-Next list the files.
+Next remove machine generated files and list the remaining files.
 
 ~~~
+$ make clean
 $ ls
 ~~~
 {: .language-bash}
 
 ~~~
-books  countwords.py  local.bib  Makefile  plotcounts.py  __pycache__  report.tex  testzipf.py
+books  countwords.py  local.bib  Makefile  plotcounts.py  report.tex  testzipf.py
 ~~~
 {: .output}
 

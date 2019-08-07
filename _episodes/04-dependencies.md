@@ -231,10 +231,6 @@ results.txt : testzipf.py isles.dat abyss.dat last.dat
 ~~~
 {: .language-make}
 
-> ## Where We Are
->
-> [This Makefile]({{ page.root }}/code/04-dependencies/Makefile)
-> contains everything done so far in this topic.
 {: .callout}
 
 {% include links.md %}
