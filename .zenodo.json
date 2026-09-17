@@ -1,0 +1,31 @@
+{
+  "contributors": [
+    {
+      "type": "Editor",
+      "name": "Gerard Capes"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Gerard Capes"
+    },
+    {
+      "name": "Matthias Rüster"
+    },
+    {
+      "name": "Maciej Cytowski"
+    },
+    {
+      "name": "Manuel Haussmann"
+    },
+    {
+      "name": "Nicolas Quiniou-Briand"
+    },
+    {
+      "name": "Tomas Stary"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  }
+}

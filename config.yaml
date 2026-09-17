@@ -13,15 +13,15 @@ carpentry: 'swc'
 # Overall title for pages.
 title: 'Automation and Make'
 
-# Date the lesson was created (YYYY-MM-DD, ISO 8601).
-created: '2026-09-15'
+# Date the lesson was created (YYYY-MM-DD, this is empty by default)
+created: '2015-06-18'
 
-# Comma-separated keywords for the lesson.
-keywords: 'software, make, automation, reproducibility'
+# Comma-separated list of keywords for the lesson
+keywords: 'software, data, lesson, The Carpentries'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha'
+life_cycle: 'beta'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
@@ -71,7 +71,6 @@ episodes:
 
 # Information for Learners
 learners: 
-- setup.md
 
 # Information for Instructors
 instructors: 

@@ -90,4 +90,5 @@ The last episode uses the LaTeX document preparation system.  If you
 find it difficult to install, simply listen to the discussion for that
 episode without doing any of the exercises.
 
-[zip-file]: files/make-lesson.zip
+
+
